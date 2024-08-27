@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Slider</title>
+  <style>
+    body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #000000;
+}
+
+.slider {
+    position: relative;
+    max-width: 1000px;
+    margin: 50px auto;
+    overflow: hidden;
+    border-radius: 10px;
+}
+
+.slides {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+.slide {
+    min-width: 100%;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.slide img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+.prev, .next {
+    position: absolute;
+    top: 50%;
+    width: auto;
+    padding: 16px;
+    margin-top: -22px;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    cursor: pointer;
+    user-select: none;
+    border: none;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 0 3px 3px 0;
+    outline: none;
+}
+
+.next {
+    right: 0;
+    border-radius: 3px 0 0 3px;
+}
+
+.prev:hover, .next:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+  </style>
+</head>
+<body>
+    <div class="slider">
+        <div class="slides">
+            <!-- Slide 1 -->
+            <div class="slide">
+                <img src="https://images.herzindagi.info/image/2022/Aug/Shree-krishna-matkifod.jpg" alt="Image 1">
+            </div>
+            <!-- Slide 2 -->
+             <div class="slide">
+                <img src="matki.jpg" alt="Image 2" height="500px" width="500px">
+            </div> 
+            <!-- Slide 3 -->
+            <div class="slide">
+                <img src="https://img.naidunia.com/naidunia/matki_21_08_2014.jpg" alt="Image 3">
+            </div>
+        </div>
+        <!-- Navigation buttons -->
+        <button class="prev" onclick="prevSlide()">&#10094;</button>
+        <button class="next" onclick="nextSlide()">&#10095;</button>
+    </div>
+
+   <script>
+    let slideIndex = 0;
+showSlides(slideIndex);
+
+function showSlides(index) {
+    const slides = document.querySelectorAll('.slide');
+    if (index >= slides.length) {
+        slideIndex = 0;
+    }
+    if (index < 0) {
+        slideIndex = slides.length - 1;
+    }
+    slides.forEach((slide, i) => {
+        slide.style.display = (i === slideIndex) ? 'block' : 'none';
+    });
+}
+
+function nextSlide() {
+    slideIndex++;
+    showSlides(slideIndex);
+}
+
+function prevSlide() {
+    slideIndex--;
+    showSlides(slideIndex);
+}
+
+// Auto play slides
+setInterval(() => {
+    nextSlide();
+}, 2000); // Change slide every 3 seconds
+
+   </script>
+</body>
+</html>
